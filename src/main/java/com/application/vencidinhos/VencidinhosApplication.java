@@ -23,25 +23,5 @@ public class VencidinhosApplication {
 		SpringApplication.run(VencidinhosApplication.class, args);
 	}
 
-//	IClientRepository clientRepository;
-//	IProductRepository productRepository;
-//	ICategoryRepository categoryRepository;
-//
-//	public VencidinhosApplication(IClientRepository clientRepository, IProductRepository productRepository, ICategoryRepository categoryRepository) {
-//		this.clientRepository = clientRepository;
-//		this.productRepository = productRepository;
-//		this.categoryRepository = categoryRepository;
-//
-//	}
-//
-//	@Override
-//	public void run(ApplicationArguments args) throws Exception {
-//		var cliente = this.clientRepository.save(new Client("teste","teste","teste", "teste"));
-//		var categoria = this.categoryRepository.save(new Category("Secos"));
-//
-//		var produto = new Product(null, "Pão", categoria, 10.9,29,cliente);
-//
-//		this.productRepository.save(produto);
-//	}
 }
 
