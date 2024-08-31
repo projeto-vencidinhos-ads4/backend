@@ -1,9 +1,7 @@
 package com.application.vencidinhos.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,7 +9,7 @@ import java.util.List;
 @Table(name="tb_products")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter @Setter
 public class Category {
 
     @Id
@@ -24,4 +22,8 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Product> products;
+
+    public Category(String name) {
+        this.name = name;
+    }
 }

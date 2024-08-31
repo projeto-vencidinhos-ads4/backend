@@ -1,9 +1,7 @@
 package com.application.vencidinhos.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,7 +9,7 @@ import java.util.List;
 @Table(name="tb_clients")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter @Setter
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,4 +31,10 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Product> products;
 
+    public Client(String document, String name, String store, String type) {
+        this.document = document;
+        this.name = name ;
+        this.store = store;
+        this.type = type;
+    }
 }

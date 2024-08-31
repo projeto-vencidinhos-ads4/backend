@@ -6,17 +6,8 @@ services:
     container_name: mysql_container
     environment:
       MYSQL_DATABASE: db_vencidinhos
-      MYSQL_USER: 
-      MYSQL_PASSWORD:
+      MYSQL_USER: vencidinho
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: senha
     ports:
-      - "3307:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - mysql_network
-
-volumes:
-  db_data:
-
-networks:
-  mysql_network:
+      - "3306:3306"
