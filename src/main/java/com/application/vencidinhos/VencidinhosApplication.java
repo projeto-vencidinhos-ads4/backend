@@ -12,4 +12,3 @@ public class VencidinhosApplication {
 
 }
 
-//spring.datasource.url=jdbc:mysql://localhost:3306/bd_vencidinhos?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSl=false

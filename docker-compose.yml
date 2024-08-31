@@ -6,7 +6,7 @@ services:
     container_name: mysql_container
     environment:
       MYSQL_DATABASE: db_vencidinhos
-      MYSQL_USER:
+      MYSQL_USER: 
       MYSQL_PASSWORD:
     ports:
       - "3307:3306"
