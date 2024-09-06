@@ -1,38 +1,39 @@
 package com.application.vencidinhos.controller;
 
-import com.application.vencidinhos.domain.entity.Category;
-import com.application.vencidinhos.domain.entity.Client;
-import com.application.vencidinhos.domain.entity.Product;
-import com.application.vencidinhos.infrastructure.ICategoryRepository;
-import com.application.vencidinhos.infrastructure.IClientRepository;
-import com.application.vencidinhos.infrastructure.IProductRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.application.vencidinhos.domain.dto.request.ProductRequestDto;
+import com.application.vencidinhos.domain.dto.response.ProductDto;
+import com.application.vencidinhos.domain.service.ProductService;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.util.List;
+
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-    IProductRepository productRepository;
-    ICategoryRepository categoryRepository;
-    IClientRepository clientRepository;
+    ProductService productService;
 
-    public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, IClientRepository clientRepository) {
-        this.productRepository = productRepository;
-        this.categoryRepository = categoryRepository;
-        this.clientRepository = clientRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
-    @PostMapping
-    public Product save() {
+    @PostMapping("/create")
+    public ResponseEntity<Void> save(@RequestBody @Valid ProductRequestDto productRequestDto) {
+        this.productService.createProduct(productRequestDto);
 
-        var cliente = this.clientRepository.save(new Client("teste", "teste", "teste", "teste"));
-        var categoria = this.categoryRepository.save(new Category("Secos"));
+        return ResponseEntity.created(URI.create("")).build();
+    }
 
-        var produto = new Product(null, "Pão", 10.9, 29, cliente, categoria);
-        System.out.println(produto);
+    @GetMapping("/item/{productId}")
+    public ResponseEntity<ProductDto> findProductById(@PathVariable Long productId){
+        return ResponseEntity.status(200).body(this.productService.findProduct(productId));
+    }
 
-
-        return this.productRepository.save(produto);
+    @GetMapping
+    public ResponseEntity<List<ProductDto>> findAll(){
+        return ResponseEntity.ok(this.productService.findAll());
     }
 }

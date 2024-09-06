@@ -15,8 +15,16 @@ import java.util.Date;
 @Getter @Setter
 public class Product {
 
+    public Product(String name, Double price, Integer quantity, Client client, Category category) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.client = client;
+        this.category = category;
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
