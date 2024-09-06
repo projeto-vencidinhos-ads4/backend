@@ -2,11 +2,6 @@ package com.application.vencidinhos.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name="tb_products")
