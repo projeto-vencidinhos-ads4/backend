@@ -33,6 +33,7 @@ public class Category {
     }
 
     public Category(CategoryRequestDto categoryRequestDto, Client client) {
+        this.id = null;
         this.name = categoryRequestDto.name();
         this.client = client;
     }

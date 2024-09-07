@@ -20,6 +20,7 @@ public final class CategoryDto implements Serializable {
     private static final long serialVersionUID = 0L;
     private Long id;
     private String name;
+    private int quantidade;
     private Long clientId;
 
     public CategoryDto(Category category) {
