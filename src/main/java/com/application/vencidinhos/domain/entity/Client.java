@@ -36,9 +36,9 @@ public class Client {
     private List<Category> categories;
 
     public Client(ClientRequestDto client) {
-        this.document = client.document();
-        this.name = client.name() ;
-        this.store = client.store();
-        this.type = client.type();
+        this.document = client.getDocument();
+        this.name = client.getName() ;
+        this.store = client.getStore();
+        this.type = client.getType();
     }
 }
