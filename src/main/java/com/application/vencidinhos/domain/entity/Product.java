@@ -2,11 +2,6 @@ package com.application.vencidinhos.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name="tb_products")
@@ -15,8 +10,16 @@ import java.util.Date;
 @Getter @Setter
 public class Product {
 
+    public Product(String name, Double price, Integer quantity, Client client, Category category) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.client = client;
+        this.category = category;
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

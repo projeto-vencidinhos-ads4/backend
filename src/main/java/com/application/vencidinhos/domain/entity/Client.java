@@ -1,5 +1,6 @@
 package com.application.vencidinhos.domain.entity;
 
+import com.application.vencidinhos.domain.dto.request.ClientRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,10 +32,13 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Product> products;
 
-    public Client(String document, String name, String store, String type) {
-        this.document = document;
-        this.name = name ;
-        this.store = store;
-        this.type = type;
+    @OneToMany(mappedBy = "client")
+    private List<Category> categories;
+
+    public Client(ClientRequestDto client) {
+        this.document = client.document();
+        this.name = client.name() ;
+        this.store = client.store();
+        this.type = client.type();
     }
 }
