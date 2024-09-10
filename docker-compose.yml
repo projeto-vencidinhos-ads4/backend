@@ -7,7 +7,7 @@ services:
     environment:
       MYSQL_DATABASE: db_vencidinhos
       MYSQL_USER: vencidinho
-      MYSQL_PASSWORD: 
+      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: senha
     ports:
       - "3307:3306"

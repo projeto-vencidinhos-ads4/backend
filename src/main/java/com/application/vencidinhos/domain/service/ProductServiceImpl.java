@@ -52,4 +52,12 @@ public class ProductServiceImpl implements ProductService {
                 .map(ProductDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ProductDto> findProductsByClientId(Long clientId) {
+        return this.productRepository.findAllByClientId(clientId)
+                .stream()
+                .map(ProductDto::new)
+                .collect(Collectors.toList());
+    }
 }

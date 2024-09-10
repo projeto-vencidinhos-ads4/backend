@@ -31,10 +31,10 @@ public class CategoryController {
     public ResponseEntity<CategoryDto> create(@RequestBody @Valid CategoryRequestDto categoryRequestDto) {
         Optional<Client> client = this.clientRepository.findById(categoryRequestDto.clientId());
 
-        if (client.isEmpty()) return ResponseEntity.notFound().build();
+        if (client.isEmpty())
+            return ResponseEntity.notFound().build();
 
-        Category createdCategory =
-                this.categoryRepository.save(new Category(categoryRequestDto, client.get()));
+        Category createdCategory = this.categoryRepository.save(new Category(categoryRequestDto, client.get()));
 
         return ResponseEntity.created(null).body(
                 new CategoryDto(createdCategory));
@@ -44,21 +44,21 @@ public class CategoryController {
     public ResponseEntity<List<CategoryDto>> findAll() {
         List<Category> listaCategorias = this.categoryRepository.findAll();
 
-//        if (listaCategorias.isEmpty()) return ResponseEntity.noContent().build();
-
+        // if (listaCategorias.isEmpty()) return ResponseEntity.noContent().build();
 
         return ResponseEntity.ok(listaCategorias
                 .stream()
                 .map(category -> {
-                    if (category == null) return null;
+                    if (category == null)
+                        return null;
 
                     return new CategoryDto(category);
                 })
                 .collect(Collectors.toList()));
     }
 
-    @GetMapping("{clientID}")
-    public ResponseEntity<?> findAllByClientId(@PathVariable Long clientID){
+    @GetMapping("/{clientID}")
+    public ResponseEntity<?> findAllByClientId(@PathVariable Long clientID) {
         var teste = this.categoryRepository.findAllByClientId(clientID);
 
         return ResponseEntity.ok(teste);

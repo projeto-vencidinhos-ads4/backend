@@ -13,4 +13,6 @@ public interface ProductService {
     ProductDto findProduct(Long productId);
 
     List<ProductDto> findAll();
+
+    List<ProductDto> findProductsByClientId(Long clientId);
 }

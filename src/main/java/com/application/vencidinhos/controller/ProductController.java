@@ -36,4 +36,11 @@ public class ProductController {
     public ResponseEntity<List<ProductDto>> findAll(){
         return ResponseEntity.ok(this.productService.findAll());
     }
+
+    @GetMapping("/{clientId}")
+    public ResponseEntity<?> findProductsByClientId(@PathVariable Long clientId){
+        return ResponseEntity.ok(this.productService.findProductsByClientId(clientId));
+    }
+
+
 }
