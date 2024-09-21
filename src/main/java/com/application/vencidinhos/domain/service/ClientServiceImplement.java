@@ -44,4 +44,12 @@ public class ClientServiceImplement implements ClientServiceInterface {
         return clientResponseDto;
     }
 
+    @Override
+    public void deleteClient(Long clientId) {
+        Client client = clientRepository.findById(clientId).orElseThrow(() -> new IllegalArgumentException("Client not found with id: " + clientId));
+
+        clientRepository.delete(client);
+    }
+
+
 }
