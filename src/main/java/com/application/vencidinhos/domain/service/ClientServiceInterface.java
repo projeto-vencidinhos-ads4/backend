@@ -9,9 +9,12 @@ public interface ClientServiceInterface {
 
     void createClient(ClientRequestDto newClientDto);
 
-    //ClientDto findClient(Long clientId);
-
-    //List<ClientDto> findAll();
-
     ClientResponseDto updateClient(Long clientId, ClientRequestDto client);
+
+    void deleteClient(Long clientId);
 }
+
+
+//ClientDto findClient(Long clientId);
+
+//List<ClientDto> findAll();
