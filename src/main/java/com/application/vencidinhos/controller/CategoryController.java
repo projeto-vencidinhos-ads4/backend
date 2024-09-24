@@ -6,6 +6,7 @@ import com.application.vencidinhos.domain.entity.Category;
 import com.application.vencidinhos.domain.entity.Client;
 import com.application.vencidinhos.domain.repository.CategoryRepository;
 import com.application.vencidinhos.domain.repository.ClientRepository;
+import com.application.vencidinhos.domain.service.CategoryServiceInterface;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,10 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
+
     CategoryRepository categoryRepository;
     ClientRepository clientRepository;
+    CategoryServiceInterface categoryService;
 
     public CategoryController(CategoryRepository categoryRepository, ClientRepository clientRepository) {
         this.categoryRepository = categoryRepository;
@@ -62,5 +65,11 @@ public class CategoryController {
         var teste = this.categoryRepository.findAllByClientId(clientID);
 
         return ResponseEntity.ok(teste);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
+        categoryService.deleteCategory(id);
+        return ResponseEntity.noContent().build();
     }
 }
