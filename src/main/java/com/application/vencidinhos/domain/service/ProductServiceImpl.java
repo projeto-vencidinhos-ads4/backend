@@ -4,6 +4,7 @@ import com.application.vencidinhos.domain.dto.request.ProductRequestDto;
 import com.application.vencidinhos.domain.dto.response.ProductDto;
 import com.application.vencidinhos.domain.entity.Category;
 import com.application.vencidinhos.domain.entity.Client;
+import com.application.vencidinhos.domain.entity.Product;
 import com.application.vencidinhos.domain.repository.CategoryRepository;
 import com.application.vencidinhos.domain.repository.ClientRepository;
 import com.application.vencidinhos.domain.repository.ProductRepository;
@@ -59,5 +60,13 @@ public class ProductServiceImpl implements ProductService {
                 .stream()
                 .map(ProductDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteProduct(Long productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found with id: " + productId));
+
+        productRepository.delete(product);
     }
 }
