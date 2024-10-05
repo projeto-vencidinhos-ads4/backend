@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> findProductsByClientId(Long clientId) {
-        return this.productRepository.findAllByClientId(clientId)
+        return this.productRepository.findAllByClientIdOrderByIdDesc(clientId)
                 .stream()
                 .map(ProductDto::new)
                 .collect(Collectors.toList());
