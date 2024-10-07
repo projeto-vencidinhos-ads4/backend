@@ -2,6 +2,7 @@ package com.application.vencidinhos.domain.service;
 
 import com.application.vencidinhos.domain.dto.request.ProductRequestDto;
 import com.application.vencidinhos.domain.dto.response.ProductDto;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public interface ProductService {
 
     List<ProductDto> findProductsByClientId(Long clientId);
 
-    void deleteProduct(Long productId);
+    ProductDto changeProduct(Long id, @Valid ProductRequestDto productRequestDto);
 
+    void deleteProduct(Long productId);
 }
