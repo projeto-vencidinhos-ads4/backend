@@ -62,6 +62,36 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    // PUT method implementation
+    @Override
+    public ProductDto changeProduct(Long id, ProductRequestDto productRequestDto) {
+        // Fetching the existing Product by id
+        Product existingProduct = productRepository.findById(id).orElseThrow(()
+                -> new ResponseStatusException(HttpStatusCode.valueOf(404), "Product not found!"));
+
+        // Fetching the Client entity based on the given "clientId"
+        Client client = clientRepository.findById(existingProduct.getClient().getId()).orElseThrow(()
+                -> new ResponseStatusException(HttpStatusCode.valueOf(404), "Client not found!\n" +
+                "The Client with id:" + existingProduct.getClient().getId() + "is non existent."));
+
+        // Fetching the Category entity based on the given "categoryId"
+        Category category = categoryRepository.findById(existingProduct.getCategory().getId()).orElseThrow(()
+                -> new ResponseStatusException(HttpStatusCode.valueOf(404), "Category not found!\n" +
+                "The Category with id:" + existingProduct.getCategory().getId() + "is non existent."));
+
+        // Updating the existingProduct with the productRequestDto data
+        existingProduct.setName(productRequestDto.getName());
+        existingProduct.setPrice(productRequestDto.getPrice());
+        existingProduct.setQuantity(productRequestDto.getQuantity());
+        existingProduct.setClient(client);
+        existingProduct.setCategory(category);
+
+        // Save the updated product
+        this.productRepository.save(existingProduct);
+
+        return new ProductDto(existingProduct);
+    }
+
     @Override
     public void deleteProduct(Long productId) {
         Product product = productRepository.findById(productId)

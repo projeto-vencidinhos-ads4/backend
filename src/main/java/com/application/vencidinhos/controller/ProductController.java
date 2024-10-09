@@ -42,6 +42,14 @@ public class ProductController {
         return ResponseEntity.ok(this.productService.findProductsByClientId(clientId));
     }
 
+    @PutMapping("/{id}/change") // http://localhost:8085/products/{id}/change
+    public ResponseEntity<ProductDto> changeProduct(
+            @PathVariable Long id,
+            @RequestBody @Valid ProductRequestDto productRequestDto)
+    {
+        return ResponseEntity.ok(this.productService.changeProduct(id, productRequestDto));
+    }
+
     @DeleteMapping("/{productId}/delete")
     public ResponseEntity<Void> deleteProductById(@PathVariable Long productId) {
         productService.deleteProduct(productId);
