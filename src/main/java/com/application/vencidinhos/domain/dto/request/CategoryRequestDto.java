@@ -8,5 +8,8 @@ import java.io.Serializable;
 /**
  * DTO for {@link com.application.vencidinhos.domain.entity.Category}
  */
-public record CategoryRequestDto(@NotBlank String name, Long clientId) implements Serializable {
+public record CategoryRequestDto(
+        @NotBlank String name,
+        Long clientId
+) implements Serializable {
 }

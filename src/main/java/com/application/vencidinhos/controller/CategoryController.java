@@ -1,6 +1,7 @@
 package com.application.vencidinhos.controller;
 
 import com.application.vencidinhos.domain.dto.request.CategoryRequestDto;
+import com.application.vencidinhos.domain.dto.request.ClientRequestDto;
 import com.application.vencidinhos.domain.dto.response.CategoryDto;
 import com.application.vencidinhos.domain.entity.Category;
 import com.application.vencidinhos.domain.entity.Client;
@@ -25,10 +26,10 @@ public class CategoryController {
     ClientRepository clientRepository;
     CategoryServiceInterface categoryService;
 
-    public CategoryController(CategoryRepository categoryRepository, ClientRepository clientRepository,CategoryServiceInterface categoryService) {
+    public CategoryController(CategoryRepository categoryRepository, ClientRepository clientRepository,CategoryServiceInterface categoryServiceInterface) {
         this.categoryRepository = categoryRepository;
         this.clientRepository = clientRepository;
-        this.categoryService = categoryService;
+        this.categoryService = categoryServiceInterface;
     }
 
     @PostMapping("/create")
@@ -66,6 +67,12 @@ public class CategoryController {
         var teste = this.categoryRepository.findAllByClientId(clientID);
 
         return ResponseEntity.ok(teste);
+    }
+
+    @PutMapping("/{id}/change")
+    public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long id,
+                               @RequestBody CategoryRequestDto categoryRequestDto) {
+        return categoryService.updateCategory(id, categoryRequestDto);
     }
 
     @DeleteMapping("/delete/{id}")
