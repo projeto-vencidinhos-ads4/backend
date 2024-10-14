@@ -70,12 +70,12 @@ public class ProductServiceImpl implements ProductService {
                 -> new ResponseStatusException(HttpStatusCode.valueOf(404), "Product not found!"));
 
         // Fetching the Client entity based on the given "clientId"
-        Client client = clientRepository.findById(existingProduct.getClient().getId()).orElseThrow(()
+        Client client = clientRepository.findById(productRequestDto.getClientId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatusCode.valueOf(404), "Client not found!\n" +
                 "The Client with id:" + existingProduct.getClient().getId() + "is non existent."));
 
         // Fetching the Category entity based on the given "categoryId"
-        Category category = categoryRepository.findById(existingProduct.getCategory().getId()).orElseThrow(()
+        Category category = categoryRepository.findById(productRequestDto.getCategoryId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatusCode.valueOf(404), "Category not found!\n" +
                 "The Category with id:" + existingProduct.getCategory().getId() + "is non existent."));
 
