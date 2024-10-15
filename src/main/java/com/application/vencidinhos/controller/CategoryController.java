@@ -25,7 +25,8 @@ public class CategoryController {
     ClientRepository clientRepository;
     CategoryServiceInterface categoryService;
 
-    public CategoryController(CategoryRepository categoryRepository, ClientRepository clientRepository,CategoryServiceInterface categoryService) {
+    public CategoryController(CategoryRepository categoryRepository, ClientRepository clientRepository,
+            CategoryServiceInterface categoryService) {
         this.categoryRepository = categoryRepository;
         this.clientRepository = clientRepository;
         this.categoryService = categoryService;
